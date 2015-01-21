@@ -1,0 +1,21 @@
+{
+  "name": "sublime-codeMirror-theme-converter",
+  "version": "1.0.0",
+  "description": "A simple theme covererter from Sublime to CodeMirror",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sublime",
+    "codemirror",
+    "code mirror",
+    "theme"
+  ],
+  "author": "Farhad Ghayour",
+  "license": "ISC",
+  "dependencies": {
+    "plist": "^1.1.0",
+    "xml2js": "^0.4.4"
+  }
+}
