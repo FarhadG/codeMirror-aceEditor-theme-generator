@@ -1,40 +1,19 @@
 /*******************************************************************************
  *  Dependencies
  */
-var fs           = require('fs');
-var path         = require('path');
-var plist        = require('plist');
+var fs      = require('fs');
+var path    = require('path');
+var plist   = require('plist');
+var CSSJSON = require('CSSJSON');
+var supportedScopes = require('./supportedScopes');
+
 
 /*******************************************************************************
- *  TODO SCOPES
- */
-var supportedScopes = {
-    activeGuide: '',
-    background: '',
-    bracketContentsForeground: '',
-    bracketContentsOptions: '',
-    bracketsForeground: '',
-    bracketsOptions: '',
-    caret: '',
-    findHighlight: '',
-    findHighlightForeground: '',
-    foreground: '',
-    inactiveSelection: '',
-    inactiveSelectionForeground: '',
-    invisibles: '',
-    lineHighlight: '',
-    selection: '',
-    selectionBorder: '',
-    selectionForeground: '',
-    tagsOptions: '',
-};
-
-/*******************************************************************************
- *  Parsying styles
+ *  Parsying styles TODO????????
  */
 function parseStyles(styles) {
     var css = [];
-
+    console.log(styles);
     var fontStyle = styles.fontStyle || '';
 
     if (fontStyle.indexOf('underline') !== -1) {
@@ -57,33 +36,79 @@ function parseStyles(styles) {
 }
 
 /*******************************************************************************
- *  Extarcting styles from a theme
+ *  Write to the file
  */
-function extractStyles(theme) {
-    var styles = {};
+function writeFile(styles) {
+    var data = CSSJSON.toCSS(styles);
+    fs.writeFile(__dirname + '/codemirror/famous.css', data, function(err) {
+        if(err) console.log(err);
+    });
+}
 
-    // Global styling
-    var globalSettings = theme.settings[0];
-    console.log(globalSettings);
+function convertClass(string) {
+    return '.' + string;
+}
 
-    for(var i = 0; i < theme.settings.length; i++) {
+function buildClass(themeClass, selector) {
+    return [convertClass(themeClass), convertClass(selector)].join(' ');
+}
 
-        var element = theme.settings[i];
-        // if (!element.scope || !element.settings) continue;
+function print(json) {
+    console.log(JSON.stringify(json, null, 4));
+}
 
-        // console.log(element.settings);
-        // var scopes = element.scope.split(/\s*[|,]\s*/g);
-        // for(var j = 0; j < scopes.length; j++) {
-        //     var scope = scopes[i];
-        //     var style = parseStyles(element.settings);
-        //     var codeMirrorScope = supportedScopes[scope];
-        //     if (codeMirrorScope) {
-        //         colors[codeMirrorScope] = style;
-        //     }
-        // }
+function generateThemeInfo(themeInfo, theme) {
+    var root = {};
+
+    for(var themeInfo in theme) {
+        if (themeInfo.toLowerCase() !== 'settings') {
+            var info = theme[themeInfo];
+            root[themeInfo] = info;
+        }
     }
 
-    return styles;
+    root.children = {};
+    root.unsupported = {};
+    return root;
+}
+
+function generateGlobalStyles(global, root, themeName, theme) {
+    var styles = root.children;
+
+    for(var scope in global) {
+        var codeMirrorScope = supportedScopes[scope];
+        if (codeMirrorScope) {
+            var selector = buildClass(themeName, codeMirrorScope.selector);
+            var property = codeMirrorScope.property;
+            var value = global[scope];
+            styles[selector] = {};
+            styles[selector].attributes = {};
+            styles[selector].attributes[property] = value;
+        } else {
+            root.unsupported[scope] = 'Global';
+        }
+    }
+}
+
+/*******************************************************************************
+ *  Extarcting styles from a theme
+ */
+function extractStyles(themeName, theme) {
+    var root = generateThemeInfo(themeName, theme);
+    var settings = theme.settings;
+
+    for(var i = 0; i < settings.length; i++) {
+        if (!(settings[i].name || settings[i].scope)) {
+            // generateGlobalStyles(settings[i].settings, root, themeName, theme);
+        } else {
+            // now onto applying the correct styling to the rest of the elements
+            parseStyles(settings[i].settings);
+        }
+
+    }
+
+    print(root)
+    return root;
 }
 
 /*******************************************************************************
@@ -98,13 +123,11 @@ function parseTheme(themeXml, callback) {
  *  Converting the theme
  */
 function convertTheme(name, themePath, outputDirectory) {
-    console.log('Converting ' + name);
+    // console.log('Converting ' + name);
     var srcTheme = fs.readFileSync(themePath, 'utf8');
     parseTheme(srcTheme, function(theme) {
-        var styles = extractStyles(theme);
-        styles.cssClass = 'codeMirror-' + name.toLowerCase();
-        styles.uuid = theme.uuid;
-        // var css = fillTemplate(cssTemplate, styles);
+        styles = extractStyles(name, theme);
+        writeFile(styles);
     });
 }
 

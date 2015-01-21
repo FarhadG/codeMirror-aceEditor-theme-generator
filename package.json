@@ -15,6 +15,7 @@
   "author": "Farhad Ghayour",
   "license": "ISC",
   "dependencies": {
+    "cssjson": "^2.1.3",
     "plist": "^1.1.0",
     "xml2js": "^0.4.4"
   }
