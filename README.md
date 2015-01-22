@@ -35,6 +35,13 @@ After installing the package, you can run the `main.js` script to convert Sublim
 ```
 
 
+## Demo
+
+Here's a theme I extracted from one of my favorite Sublime Themes (itg-flat). I had to add an additional 4-5 CSS selectors to get it nearly there, as Sublime has a few more specific selectors than CodeMirror.
+
+<img style='width: 100%' src='http://i58.tinypic.com/28vrkt1.png' />
+
+
 ## GUI Interface
 
 Here's the <a href="http://tmtheme-editor.herokuapp.com/" target="_blank">LINK</a> for making SublimeText and TextMate with a visual interface. After saving the file, you can, then, take the file and run the generator script for converting the XML to CSS.
