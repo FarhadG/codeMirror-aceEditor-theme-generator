@@ -41,4 +41,4 @@ Here's the <a href="http://tmtheme-editor.herokuapp.com/" target="_blank">LINK</
 
 ## Options
 
-I'll be adding more meshing features; that said, if you'd like a feature, let me know so that I'll try and implement it into future updates.
+I'll be adding more features; that said, if you'd like a feature, let me know so that I'll try and implement it into future updates.
