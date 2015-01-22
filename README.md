@@ -28,9 +28,10 @@ After installing the package, you can run the `main.js` script to convert Sublim
 1.  Theme name: Should be the same one provided to CodeMirror's theme API option, so that the correct namespacing applies over the CSS classes.
 2.  The source file path: The relative path to the source file.
 3.  The destination file path: The relative path for the output directory/file.
+4.  You can pass a boolean (true/false) for having the CSS JSON printed out to the console. This can be useful is you find variables from Sublime or TextMate's XML that match up with CodeMirror and AceEditor's classes. If so, you can update the scopes files and/or open a GitHub issue.
 
 ```
-  $ node main.js [themeName] [pathToSrcFile] [pathToDestinationFile(optional)]
+  $ node main.js [themeName] [pathToSrcFile] [pathToDestinationFile(optional)] [debugMode(optional)]
 ```
 
 
