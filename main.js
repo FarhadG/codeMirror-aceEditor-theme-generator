@@ -110,7 +110,6 @@ function generateThemeInfo(themeInfo, theme) {
             root[themeInfo] = info;
         }
     }
-
     root.children = {};
     root.unsupported = {};
 }
@@ -181,7 +180,7 @@ function generateStyles(styles, themeName, theme) {
         }
     }
     else {
-        addToUnsupported(styles.scope, 'Specific styling');
+        addToUnsupported(styles.scope, styles);
     }
 }
 
@@ -235,10 +234,11 @@ function printCompletedMessage(themeName) {
  *  Read the given theme file and send it off to be parsed.
  *  Once completed, send off the root JSON to be written to CSS.
  */
-function convertTheme(themeName, themePath, outputDirectory) {
+function convertTheme(themeName, themePath, outputDirectory, debug) {
     var srcTheme = fs.readFileSync(__dirname + themePath, 'utf8');
     parseTheme(srcTheme, function(theme) {
         extractStyles(themeName, theme);
+        if (debug) print(root);
         writeFile(root, themeName, outputDirectory, printCompletedMessage);
     });
 }
@@ -264,7 +264,8 @@ if (process.argv.length > 1) {
     var themeName = args[0];
     var themePath = cleanPath(args[1]);
     var outputDirectory = cleanPath(args[2]);
-    convertTheme(themeName, themePath, outputDirectory);
+    var debug = args[3] ? true : false;
+    convertTheme(themeName, themePath, outputDirectory, debug);
 }
 
 

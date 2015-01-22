@@ -9,6 +9,7 @@ module.exports = {
     'background': 'background',
     'foreground': 'color',
     'selection': ['CodeMirror-selected', 'background'],
+    'lineHighlight': ['CodeMirror-activeline-background', 'background'],
     /*
      *  Specific styling with their associated CodeMirror
      *  selectors as the values
