@@ -1,6 +1,6 @@
 {
   "name": "codeMirror-aceEditor-theme-generator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CodeMirror & Ace Editor themes converted from a GUI and/or Sublime Text & TextMate themes",
   "main": "main.js",
   "scripts": {
