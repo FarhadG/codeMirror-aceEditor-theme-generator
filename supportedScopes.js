@@ -2,20 +2,23 @@
  *  Current supported scopes between Sublime + CodeMirror
  */
 module.exports = {
-    background: {
-        selector: 'CodeMirror',
-        property: 'background'
-    },
-    foreground: {
-        selector: 'cm-variable',
-        property: 'color'
-    },
-    selection: {
-        selector: 'CodeMirror-selected',
-        property: 'background'
-    },
-    comment: {
-        selector: '...',
-        property: ''
-    }
+    /*
+     *  Special cases for the values as the globals
+     *  don't have an associated css property
+     */
+    'background': 'background',
+    'foreground': 'color',
+    'selection': ['CodeMirror-selected', 'background'],
+    /*
+     *  Specific styling with their associated CodeMirror
+     *  selectors as the values
+     */
+    'comment': 'cm-comment',
+    'string': 'cm-string',
+    'constant.numeric': 'cm-number',
+    'constant.language': 'cm-atom',
+    'keyword': 'cm-keyword',
+    'entity.name.function': 'cm-variable',
+    'variable.parameter': 'cm-def',
+    'support.function': 'cm-property'
 };
