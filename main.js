@@ -258,7 +258,7 @@ function cleanPath(path) {
 if (process.argv.length > 1) {
     var args = process.argv.splice(2);
     if (args.length < 2) {
-        console.error('Usage: node main.js [themeName, pathToDirection, outputDirectory (OPTIONAL)]');
+        console.error('Usage: [themeName] [pathToSrcFile] [pathToDestinationFile(optional)]');
         process.exit(1);
     }
     var themeName = args[0];
