@@ -1,7 +1,7 @@
 {
-  "name": "sublime-codeMirror-theme-converter",
-  "version": "1.0.0",
-  "description": "A simple theme covererter from Sublime to CodeMirror",
+  "name": "codeMirror-aceEditor-themes-generator",
+  "version": "0.1",
+  "description": "CodeMirror & Ace Editor themes converted from a GUI and/or Sublime Text & TextMate themes",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,13 +10,14 @@
     "sublime",
     "codemirror",
     "code mirror",
-    "theme"
+    "ace editor",
+    "textmate",
+    "sublime text"
   ],
   "author": "Farhad Ghayour",
   "license": "ISC",
   "dependencies": {
     "cssjson": "^2.1.3",
-    "plist": "^1.1.0",
-    "xml2js": "^0.4.4"
+    "plist": "^1.1.0"
   }
 }

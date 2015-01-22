@@ -1,5 +1,5 @@
 /*******************************************************************************
- *  Current supported scopes between Sublime + CodeMirror
+ *  Current supported scopes between Sublime/TextMate and CodeMirror
  */
 module.exports = {
     /*
