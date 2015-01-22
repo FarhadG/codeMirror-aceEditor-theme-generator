@@ -1,4 +1,4 @@
-CodeMirror AceEditor Themes Generator
+CodeMirror & AceEditor Theme Generator
 ====
 
 Generate Code Mirror and Ace Editor themes with the help of a sleek GUI and/or from the thousands of available themes for Sublime Text and Text Mate.
@@ -15,8 +15,8 @@ If something is not working or you would like a new feature, please use the issu
 You can simply fork and clone (or download) the repo into your local directory:
 
 ```
-  $ git clone https://github.com/FarhadG/codeMirror-aceEditor-themes-generator
-  $ cd codeMirror-aceEditor-themes-generator
+  $ git clone https://github.com/FarhadG/codeMirror-aceEditor-theme-generator
+  $ cd codeMirror-aceEditor-theme-generator
   $ npm install
 ```
 

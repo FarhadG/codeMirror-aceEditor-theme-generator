@@ -1,5 +1,5 @@
 {
-  "name": "codeMirror-aceEditor-themes-generator",
+  "name": "codeMirror-aceEditor-theme-generator",
   "version": "0.1.1",
   "description": "CodeMirror & Ace Editor themes converted from a GUI and/or Sublime Text & TextMate themes",
   "main": "main.js",
