@@ -31,7 +31,7 @@ After installing the package, you can run the `main.js` script to convert Sublim
 4.  You can pass a boolean (true/false) for having the CSS JSON printed out to the console. This can be useful is you find variables from Sublime or TextMate's XML that match up with CodeMirror and AceEditor's classes. If so, you can update the scopes files and/or open a GitHub issue.
 
 ```
-  $ node main.js [themeName] [pathToSrcFile] [pathToDestinationFile(optional)] [debugMode(optional)]
+  $ node main.js themeName | sourcePath | debugMode (bool, optional)
 ```
 
 
