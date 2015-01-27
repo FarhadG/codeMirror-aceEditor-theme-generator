@@ -51,15 +51,11 @@ function parseStyles(styles) {
  *  Convert a given JSON to CSS and then display message after file has
  *  been written.
  */
-function writeFile(json, themeName, outputDirectory, callback) {
+function writeFile(json, themeName, callback) {
     var data = CSSJSON.toCSS(json);
-    var destination = [__dirname];
+    var destination = __dirname+ '/' +themeName+ '.css'
 
-    if (outputDirectory) {
-        destination.push(outputDirectory);
-    }
-
-    fs.writeFile(destination.join(''), data, function(err) {
+    fs.writeFile(destination, data, function(err) {
         if (err) console.log(err);
         callback(themeName);
     });
@@ -234,12 +230,12 @@ function printCompletedMessage(themeName) {
  *  Read the given theme file and send it off to be parsed.
  *  Once completed, send off the root JSON to be written to CSS.
  */
-function convertTheme(themeName, themePath, outputDirectory, debug) {
+function convertTheme(themeName, themePath, debug) {
     var srcTheme = fs.readFileSync(__dirname + themePath, 'utf8');
     parseTheme(srcTheme, function(theme) {
         extractStyles(themeName, theme);
         if (debug) print(root);
-        writeFile(root, themeName, outputDirectory, printCompletedMessage);
+        writeFile(root, themeName, printCompletedMessage);
     });
 }
 
@@ -258,14 +254,13 @@ function cleanPath(path) {
 if (process.argv.length > 1) {
     var args = process.argv.splice(2);
     if (args.length < 2) {
-        console.error('Usage: [themeName] [pathToSrcFile] [pathToDestinationFile(optional)]');
+        console.error('Usage: themeName | sourcePath | debugMode (bool, optional)');
         process.exit(1);
     }
     var themeName = args[0];
     var themePath = cleanPath(args[1]);
-    var outputDirectory = cleanPath(args[2]);
-    var debug = args[3] ? true : false;
-    convertTheme(themeName, themePath, outputDirectory, debug);
+    var debug = args[2] ? true : false;
+    convertTheme(themeName, themePath, debug);
 }
 
 
