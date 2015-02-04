@@ -53,6 +53,7 @@ function parseStyles(styles) {
  */
 function writeFile(json, themeName, callback) {
     var data = CSSJSON.toCSS(json);
+    var themeName = themeName.toLowerCase().split(' ').join('-');
     var destination = __dirname+ '/' +themeName+ '.css'
 
     fs.writeFile(destination, data, function(err) {
