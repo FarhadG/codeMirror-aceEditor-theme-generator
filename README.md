@@ -39,7 +39,7 @@ After installing the package, you can run the `main.js` script to convert Sublim
 
 Here's a theme I extracted from one of my favorite Sublime Themes (itg-flat). I had to add an additional 4-5 CSS selectors to get it nearly there, as Sublime has a few more specific selectors than CodeMirror.
 
-<a href="https://github.com/FarhadG/codeMirror-aceEditor-theme-generator.git" target="_blank"><img style='width: 100%' src='http://i58.tinypic.com/28vrkt1.png' /></a>
+<a href="http://farhadg.github.io/code-mirror-themes/" target="_blank"><img style='width: 100%' src='http://i58.tinypic.com/28vrkt1.png' /></a>
 
 
 ## GUI Interface
