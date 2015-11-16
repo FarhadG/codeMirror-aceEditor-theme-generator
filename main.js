@@ -4,7 +4,7 @@
 var fs      = require('fs');
 var path    = require('path');
 var plist   = require('plist');
-var CSSJSON = require('CSSJSON');
+var cssjson = require('cssjson');
 
 
 /*******************************************************************************
@@ -52,7 +52,7 @@ function parseStyles(styles) {
  *  been written.
  */
 function writeFile(json, themeName, callback) {
-    var data = CSSJSON.toCSS(json);
+    var data = cssjson.toCSS(json);
     var themeName = themeName.toLowerCase().split(' ').join('-');
     var destination = __dirname+ '/' +themeName+ '.css'
 
