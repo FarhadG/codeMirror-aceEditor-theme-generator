@@ -232,20 +232,12 @@ function printCompletedMessage(themeName) {
  *  Once completed, send off the root JSON to be written to CSS.
  */
 function convertTheme(themeName, themePath, debug) {
-    var srcTheme = fs.readFileSync(__dirname + themePath, 'utf8');
+    var srcTheme = fs.readFileSync(themePath, 'utf8');
     parseTheme(srcTheme, function(theme) {
         extractStyles(themeName, theme);
         if (debug) print(root);
         writeFile(root, themeName, printCompletedMessage);
     });
-}
-
-
-/*******************************************************************************
- *  Helper function for cleaning up the beginning slash
- */
-function cleanPath(path) {
-    return '/' + path.replace(/^\//g, '');
 }
 
 
@@ -259,7 +251,7 @@ if (process.argv.length > 1) {
         process.exit(1);
     }
     var themeName = args[0];
-    var themePath = cleanPath(args[1]);
+    var themePath = args[1];
     var debug = args[2] ? true : false;
     convertTheme(themeName, themePath, debug);
 }
